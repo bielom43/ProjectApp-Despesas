@@ -22,6 +22,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pessoal Expenses'),
+        backgroundColor: Colors.purple,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

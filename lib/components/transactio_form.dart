@@ -11,22 +11,30 @@ class TransactionForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5,
+      elevation: 7,
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
           children: <Widget>[
-            TextField(
+            TextFormField(
               controller: titleController,
               decoration: const InputDecoration(
                 labelText: 'Title',
+                labelStyle: TextStyle(
+                  color: Colors.purple,
+                ),
               ),
+              cursorColor: Colors.purple,
             ),
-            TextField(
+            TextFormField(
               controller: valueController,
               decoration: const InputDecoration(
                 labelText: 'Value (R\$)',
+                labelStyle: TextStyle(
+                  color: Colors.purple,
+                ),
               ),
+              cursorColor: Colors.purple,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/transaction.dart';
+import 'chart_Bar.dart';
 
 class Chart extends StatelessWidget {
-  const Chart(this.recentTransaction, {super.key});
   final List<Transaction> recentTransaction;
+
+  const Chart(this.recentTransaction, {Key? key}) : super(key: key);
 
   List<Map<String, Object>> get groupedTransactions {
     return List.generate(7, (index) {
@@ -33,12 +35,17 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    groupedTransactions;
     return Card(
       elevation: 6,
       margin: const EdgeInsets.all(20),
       child: Row(
         children: groupedTransactions.map((tr) {
-          return Text('${tr['day']}: ${tr['Value']}');
+          return ChartBar(
+            label: tr['day'] as String,
+            value: tr['Value'] as double,
+            percentage: 0,
+          );
         }).toList(),
       ),
     );

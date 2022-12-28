@@ -20,7 +20,7 @@ class ExpensesApp extends StatelessWidget {
         brightness: Brightness.light,
         colorScheme: theme.colorScheme.copyWith(
           primary: Colors.deepPurple,
-          secondary: Colors.amber,
+          secondary: Colors.black,
         ),
         textTheme: theme.textTheme.copyWith(
           headline6: const TextStyle(

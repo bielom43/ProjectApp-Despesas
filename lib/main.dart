@@ -50,27 +50,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _transactions = [
-    Transaction(
-      id: 'tran5',
-      title: 'Conta de Janeiro',
-      value: 150,
-      date: DateTime.now().subtract(const Duration(days: 33)),
-    ),
-    Transaction(
-      id: 'tran1',
-      title: 'Futebol Ball',
-      value: 80.2,
-      date: DateTime.now().subtract(const Duration(days: 3)),
-    ),
-    Transaction(
-      id: 'tran2',
-      title: 'PS5',
-      value: 300,
-      date: DateTime.now().subtract(const Duration(days: 3)),
-    )
-  ];
-
   List<Transaction> get _recenTransactions {
     return _transactions.where((tr) {
       return tr.date.isAfter(DateTime.now().subtract(
@@ -78,6 +57,27 @@ class _MyHomePageState extends State<MyHomePage> {
       ));
     }).toList();
   }
+
+  final List<Transaction> _transactions = [
+    Transaction(
+      id: 'tran5',
+      title: 'Conta de Janeiro',
+      value: 120,
+      date: DateTime.now().subtract(const Duration(days: 33)),
+    ),
+    Transaction(
+      id: 'tran1',
+      title: 'Futebol Ball',
+      value: 80.2,
+      date: DateTime.now().subtract(const Duration(days: 4)),
+    ),
+    Transaction(
+      id: 'tran2',
+      title: 'PS5',
+      value: 100,
+      date: DateTime.now().subtract(const Duration(days: 3)),
+    )
+  ];
 
   _addTransactions(String title, double value) {
     final newTrasaction = Transaction(

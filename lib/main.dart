@@ -29,6 +29,10 @@ class ExpensesApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
+          button: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
@@ -58,33 +62,14 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  final List<Transaction> _transactions = [
-    Transaction(
-      id: 'tran5',
-      title: 'Conta de Janeiro',
-      value: 120,
-      date: DateTime.now().subtract(const Duration(days: 33)),
-    ),
-    Transaction(
-      id: 'tran1',
-      title: 'Futebol Ball',
-      value: 80.2,
-      date: DateTime.now().subtract(const Duration(days: 4)),
-    ),
-    Transaction(
-      id: 'tran2',
-      title: 'PS5',
-      value: 100,
-      date: DateTime.now().subtract(const Duration(days: 3)),
-    )
-  ];
+  final List<Transaction> _transactions = [];
 
-  _addTransactions(String title, double value) {
+  _addTransactions(String title, double value, DateTime date) {
     final newTrasaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
       value: value,
-      date: DateTime.now(),
+      date: date,
     );
 
     setState(() {
@@ -103,6 +88,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  _removeTransaction(String id) {
+    setState(() {
+      _transactions.removeWhere((tr) => tr.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,7 +102,9 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: <Widget>[
           IconButton(
             onPressed: () => _openTransactionFormModal(context),
-            icon: const Icon(Icons.add),
+            icon: const Icon(
+              Icons.add,
+            ),
           ),
         ],
       ),
@@ -120,14 +113,16 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Chart(_recenTransactions),
-            TransactionList(transactions: _transactions),
+            TransactionList(transactions: _transactions, _removeTransaction),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _openTransactionFormModal(context),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        child: const Icon(Icons.add),
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        child: const Icon(
+          Icons.add,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

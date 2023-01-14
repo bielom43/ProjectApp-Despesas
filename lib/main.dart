@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
+import 'dart:math';
+
 import 'package:despesas_app/components/chart.dart';
 import 'package:despesas_app/components/transactio_form.dart';
-import 'package:flutter/material.dart';
 import 'package:despesas_app/components/transaction_list.dart';
 import '../models/transaction.dart';
-import 'dart:math';
 
 main() => runApp(const ExpensesApp());
 
@@ -96,24 +97,37 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pessoal Expenses'),
-        actions: <Widget>[
-          IconButton(
-            onPressed: () => _openTransactionFormModal(context),
-            icon: const Icon(
-              Icons.add,
-            ),
+    final appBar = AppBar(
+      title: const Text('Pessoal Expenses'),
+      actions: <Widget>[
+        IconButton(
+          onPressed: () => _openTransactionFormModal(context),
+          icon: const Icon(
+            Icons.add,
           ),
-        ],
-      ),
+        ),
+      ],
+    );
+
+    final availableHeight = MediaQuery.of(context).size.height -
+        appBar.preferredSize.height -
+        MediaQuery.of(context).padding.top;
+
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Chart(_recenTransactions),
-            TransactionList(transactions: _transactions, _removeTransaction),
+            SizedBox(
+              height: availableHeight * 0.30,
+              child: Chart(_recenTransactions),
+            ),
+            SizedBox(
+              height: availableHeight * 0.70,
+              child: TransactionList(
+                  transactions: _transactions, _removeTransaction),
+            ),
           ],
         ),
       ),

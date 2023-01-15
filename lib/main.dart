@@ -103,11 +103,20 @@ class _MyHomePageState extends State<MyHomePage> {
     final appBar = AppBar(
       title: const Text('Pessoal Expenses'),
       actions: <Widget>[
+        if (isLandscape)
+          IconButton(
+            icon: Icon(_showChart ? Icons.list : Icons.show_chart),
+            onPressed: () {
+              setState(() {
+                _showChart = !_showChart;
+              });
+            },
+          ),
         IconButton(
-          onPressed: () => _openTransactionFormModal(context),
           icon: const Icon(
             Icons.add,
           ),
+          onPressed: () => _openTransactionFormModal(context),
         ),
       ],
     );
@@ -121,25 +130,9 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            if (isLandscape)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Text('View Graphic'),
-                  Switch(
-                    activeColor: Theme.of(context).colorScheme.secondary,
-                    value: _showChart,
-                    onChanged: (value) {
-                      setState(() {
-                        _showChart = value;
-                      });
-                    },
-                  ),
-                ],
-              ),
             if (_showChart || !isLandscape)
               SizedBox(
-                height: availableHeight * 0.30,
+                height: availableHeight * (isLandscape ? 0.80 : 0.30),
                 child: Chart(_recenTransactions),
               ),
             if (!_showChart || !isLandscape)

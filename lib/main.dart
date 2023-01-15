@@ -55,6 +55,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final List<Transaction> _transactions = [];
+  bool _showChart = false;
+
   List<Transaction> get _recenTransactions {
     return _transactions.where((tr) {
       return tr.date.isAfter(DateTime.now().subtract(
@@ -62,8 +65,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ));
     }).toList();
   }
-
-  final List<Transaction> _transactions = [];
 
   _addTransactions(String title, double value, DateTime date) {
     final newTrasaction = Transaction(
@@ -109,9 +110,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
 
-    final availableHeight = MediaQuery.of(context).size.height -
-        appBar.preferredSize.height -
-        MediaQuery.of(context).padding.top;
+    final availableHeight =
+        MediaQuery.of(context).size.height - appBar.preferredSize.height - MediaQuery.of(context).padding.top;
 
     return Scaffold(
       appBar: appBar,
@@ -119,15 +119,30 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            SizedBox(
-              height: availableHeight * 0.30,
-              child: Chart(_recenTransactions),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text('View Graphic'),
+                Switch(
+                  activeColor: Theme.of(context).colorScheme.secondary,
+                  value: _showChart,
+                  onChanged: (value) {
+                    setState(() {
+                      _showChart = value;
+                    });
+                  },
+                ),
+              ],
             ),
-            SizedBox(
-              height: availableHeight * 0.70,
-              child: TransactionList(
-                  transactions: _transactions, _removeTransaction),
-            ),
+            _showChart //Can be maked with if(_showChart) and if(!_showChart) but I prerred conditional render
+                ? SizedBox(
+                    height: availableHeight * 0.30,
+                    child: Chart(_recenTransactions),
+                  )
+                : SizedBox(
+                    height: availableHeight * 0.70,
+                    child: TransactionList(transactions: _transactions, _removeTransaction),
+                  ),
           ],
         ),
       ),

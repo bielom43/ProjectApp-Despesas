@@ -98,6 +98,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+
     final appBar = AppBar(
       title: const Text('Pessoal Expenses'),
       actions: <Widget>[
@@ -119,30 +121,32 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Text('View Graphic'),
-                Switch(
-                  activeColor: Theme.of(context).colorScheme.secondary,
-                  value: _showChart,
-                  onChanged: (value) {
-                    setState(() {
-                      _showChart = value;
-                    });
-                  },
-                ),
-              ],
-            ),
-            _showChart //Can be maked with if(_showChart) and if(!_showChart) but I prerred conditional render
-                ? SizedBox(
-                    height: availableHeight * 0.30,
-                    child: Chart(_recenTransactions),
-                  )
-                : SizedBox(
-                    height: availableHeight * 0.70,
-                    child: TransactionList(transactions: _transactions, _removeTransaction),
+            if (isLandscape)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text('View Graphic'),
+                  Switch(
+                    activeColor: Theme.of(context).colorScheme.secondary,
+                    value: _showChart,
+                    onChanged: (value) {
+                      setState(() {
+                        _showChart = value;
+                      });
+                    },
                   ),
+                ],
+              ),
+            if (_showChart || !isLandscape)
+              SizedBox(
+                height: availableHeight * 0.30,
+                child: Chart(_recenTransactions),
+              ),
+            if (!_showChart || !isLandscape)
+              SizedBox(
+                height: availableHeight * 0.70,
+                child: TransactionList(transactions: _transactions, _removeTransaction),
+              ),
           ],
         ),
       ),

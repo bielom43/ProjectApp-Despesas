@@ -31,6 +31,8 @@ class ExpensesApp extends StatelessWidget {
             color: Colors.black,
           ),
           button: const TextStyle(
+            fontFamily: 'QuickSand',
+            fontSize: 15,
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
@@ -56,6 +58,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _transactions = [];
+
   bool _showChart = false;
 
   List<Transaction> get _recenTransactions {
@@ -137,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             if (!_showChart || !isLandscape)
               SizedBox(
-                height: availableHeight * 0.70,
+                height: availableHeight * (isLandscape ? 1 : 0.70),
                 child: TransactionList(transactions: _transactions, _removeTransaction),
               ),
           ],

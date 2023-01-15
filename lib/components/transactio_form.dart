@@ -46,75 +46,81 @@ class _TransactionFormState extends State<TransactionForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 7,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: <Widget>[
-            TextFormField(
-              controller: _titleController,
-              onFieldSubmitted: (value) => _submitForm(),
-              decoration: InputDecoration(
-                labelText: 'Title',
-                labelStyle: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-              ),
-              cursorColor: Colors.black,
-            ),
-            TextFormField(
-              controller: _valueController,
-              keyboardType:
-                  const TextInputType.numberWithOptions(decimal: true),
-              onFieldSubmitted: (value) => _submitForm(),
-              decoration: const InputDecoration(
-                labelText: 'Value (R\$)',
-                labelStyle: TextStyle(
-                  color: Colors.deepPurple,
-                ),
-              ),
-              cursorColor: Colors.black,
-            ),
-            SizedBox(
-              height: 70,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      _selectedDate == null
-                          ? 'No one date selected!'
-                          : 'Date Selected: ${DateFormat('dd/MM/y').format(_selectedDate!)}',
-                    ),
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 7,
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: 10,
+            right: 10,
+            left: 10,
+            bottom: 15 + MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                controller: _titleController,
+                onFieldSubmitted: (value) => _submitForm(),
+                decoration: InputDecoration(
+                  labelText: 'Title',
+                  labelStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
                   ),
-                  TextButton(
-                    onPressed: _showDatePicker,
+                ),
+                cursorColor: Colors.black,
+              ),
+              TextFormField(
+                controller: _valueController,
+                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                onFieldSubmitted: (value) => _submitForm(),
+                decoration: const InputDecoration(
+                  labelText: 'Value (R\$)',
+                  labelStyle: TextStyle(
+                    color: Colors.deepPurple,
+                  ),
+                ),
+                cursorColor: Colors.black,
+              ),
+              SizedBox(
+                height: 70,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(
+                        _selectedDate == null
+                            ? 'No one date selected!'
+                            : 'Date Selected: ${DateFormat('dd/MM/y').format(_selectedDate!)}',
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: _showDatePicker,
+                      child: Text(
+                        'Select Date',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(
+                    onPressed: _submitForm,
                     child: Text(
-                      'Select Date',
+                      'New Expense',
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).textTheme.button!.color,
                       ),
                     ),
                   ),
                 ],
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ElevatedButton(
-                  onPressed: _submitForm,
-                  child: Text(
-                    'New Expense',
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.button!.color,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

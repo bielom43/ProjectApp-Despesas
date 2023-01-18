@@ -162,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             if (_showChart || !isLandscape)
               SizedBox(
-                height: availableHeight * (isLandscape ? 0.80 : 0.30),
+                height: availableHeight * (isLandscape ? 1 : 0.30),
                 child: Chart(_recenTransactions),
               ),
             if (!_showChart || !isLandscape)
@@ -191,13 +191,15 @@ class _MyHomePageState extends State<MyHomePage> {
             body: bodyPage,
             floatingActionButton: Platform.isIOS
                 ? Container()
-                : FloatingActionButton(
-                    onPressed: () => _openTransactionFormModal(context),
-                    backgroundColor: Theme.of(context).colorScheme.secondary,
-                    child: const Icon(
-                      Icons.add,
-                    ),
-                  ),
+                : isLandscape
+                    ? Container()
+                    : FloatingActionButton(
+                        onPressed: () => _openTransactionFormModal(context),
+                        backgroundColor: Theme.of(context).colorScheme.secondary,
+                        child: const Icon(
+                          Icons.add,
+                        ),
+                      ),
             floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
           );
   }

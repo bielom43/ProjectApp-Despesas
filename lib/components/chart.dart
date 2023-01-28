@@ -49,13 +49,13 @@ class Chart extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: groupedTransactions.map((tr) {
-            return Expanded(
+            return Flexible(
+              fit: FlexFit.tight,
               child: ChartBar(
                 label: tr['day'] as String,
                 value: tr['Value'] as double,
-                percentage: _weekTotalValue == 0
-                    ? 0
-                    : (tr['Value'] as double) / _weekTotalValue,
+                percentage:
+                    _weekTotalValue == 0 ? 0 : (tr['Value'] as double) / _weekTotalValue,
               ),
             );
           }).toList(),

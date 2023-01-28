@@ -49,7 +49,8 @@ class AdaptativeDatePicker extends StatelessWidget {
             height: 70,
             child: Row(
               children: <Widget>[
-                Expanded(
+                Flexible(
+                  fit: FlexFit.tight,
                   child: Text(
                     selectedDate == null
                         ? 'No one date selected!'

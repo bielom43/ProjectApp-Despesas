@@ -45,6 +45,7 @@ class AdaptativeDatePicker extends StatelessWidget {
               onDateTimeChanged: onDateChanged,
             ),
           )
+        // ignore: sized_box_for_whitespace
         : Container(
             height: 70,
             child: Row(

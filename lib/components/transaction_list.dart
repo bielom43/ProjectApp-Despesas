@@ -68,7 +68,8 @@ class TransactionList extends StatelessWidget {
                           icon: const Icon(Icons.delete_forever_outlined),
                           label: const Text('Delete'),
                           style: ButtonStyle(
-                            foregroundColor: MaterialStateProperty.all<Color>(Theme.of(context).errorColor),
+                            foregroundColor: MaterialStateProperty.all<Color>(
+                                Theme.of(context).errorColor),
                           ),
                         )
                       : IconButton(

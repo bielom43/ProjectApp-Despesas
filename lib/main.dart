@@ -15,7 +15,7 @@ class ExpensesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = ThemeData();
+    final ThemeData theme = ThemeData.dark();
 
     return MaterialApp(
       home: const MyHomePage(),
@@ -23,14 +23,14 @@ class ExpensesApp extends StatelessWidget {
         brightness: Brightness.light,
         colorScheme: theme.colorScheme.copyWith(
           primary: Colors.deepPurple,
-          secondary: Colors.black,
+          secondary: Colors.white,
         ),
         textTheme: theme.textTheme.copyWith(
           headline6: const TextStyle(
             fontFamily: 'QuickSand',
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Colors.white,
           ),
           button: const TextStyle(
             fontFamily: 'QuickSand',
@@ -200,7 +200,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Icons.add,
                         ),
                       ),
-            floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           );
   }
 }

@@ -45,11 +45,12 @@ class AdaptativeDatePicker extends StatelessWidget {
               onDateTimeChanged: onDateChanged,
             ),
           )
-        : SizedBox(
+        : Container(
             height: 70,
             child: Row(
               children: <Widget>[
                 Flexible(
+                  flex: 1,
                   fit: FlexFit.tight,
                   child: Text(
                     selectedDate == null

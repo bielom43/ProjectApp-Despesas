@@ -25,7 +25,7 @@ class AdaptativeButton extends StatelessWidget {
             child: Text(
               label,
               style: TextStyle(
-                color: Theme.of(context).textTheme.button?.color,
+                color: Theme.of(context).textTheme.labelLarge?.color,
               ),
             ),
           );

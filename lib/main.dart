@@ -15,7 +15,7 @@ class ExpensesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = ThemeData.dark();
+    final ThemeData theme = ThemeData.light();
 
     return MaterialApp(
       home: const MyHomePage(),
@@ -26,13 +26,13 @@ class ExpensesApp extends StatelessWidget {
           secondary: Colors.white,
         ),
         textTheme: theme.textTheme.copyWith(
-          headline6: const TextStyle(
+          titleLarge: const TextStyle(
             fontFamily: 'QuickSand',
             fontSize: 18,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
-          button: const TextStyle(
+          labelLarge: const TextStyle(
             fontFamily: 'QuickSand',
             fontSize: 15,
             color: Colors.white,

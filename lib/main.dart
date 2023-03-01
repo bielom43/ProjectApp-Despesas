@@ -23,14 +23,14 @@ class ExpensesApp extends StatelessWidget {
         brightness: Brightness.light,
         colorScheme: theme.colorScheme.copyWith(
           primary: Colors.deepPurple,
-          secondary: Colors.white,
+          secondary: Colors.black,
         ),
         textTheme: theme.textTheme.copyWith(
           titleLarge: const TextStyle(
             fontFamily: 'QuickSand',
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: Colors.black,
           ),
           labelLarge: const TextStyle(
             fontFamily: 'QuickSand',
